@@ -1,6 +1,5 @@
 //type rfce
 import React, { useState } from "react";
-import DisplayForm from "../display/DisplayForm";
 import TaskForm from "../taskForm/TaskForm";
 
 function List() {
@@ -15,7 +14,6 @@ function List() {
   };
   return (
     <div>
-      {/* <DisplayForm /> */}
       <h1>What will be the new Task</h1>
       <TaskForm onSubmit={addTask} />
     </div>

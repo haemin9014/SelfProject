@@ -1,42 +1,53 @@
 import React, { useState } from "react";
 
 function TaskForm(props) {
-  const [input, setInput] = useState("");
-
-  const savedChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
+  const [task, setInput] = useState({
+    id: "",
+    firstname: "",
+    lastname: "",
+    text: "",
+    role: "",
+    date: "",
+  });
 
   const saveTask = (e) => {
+    // console.log(task.firstname + " " + task.lastname);
+  };
+
+  const updateTask = (e) => {
     e.preventDefault();
-
-    props.onSubmit({
-      inputs: input,
+    setInput({
+      ...task,
+      [e.target.name]: e.target.value,
     });
-
     setInput("");
+    console.log(task.firstname + " " + task.lastname);
+    console.log(task);
   };
 
   return (
-    <form className="task-form" onSubmit={saveTask}>
-      <input
-        type="text"
-        placeholder="add task"
-        // value={input}
-        name="text"
-        className="task-input"
-        onChange={savedChange}
-      ></input>
-      <input
-        type="text"
-        placeholder="add name"
-        // value={input}
-        name="name"
-        className="task-input"
-        onChange={savedChange}
-      ></input>
-      <button className="task-button">Add task</button>
-    </form>
+    <div>
+      <form className="task-form" onSubmit={updateTask}>
+        <label>
+          firstName:
+          <input
+            type="text"
+            placeholder="Type in First Name"
+            // value={input}
+            name="firstname"
+            onChange={updateTask}
+          />
+          lastName:
+          <input
+            type="text"
+            placeholder="Type in Last Name"
+            name="lastname"
+            onChange={updateTask}
+          />
+        </label>
+        <button className="task-button">Add task</button>
+      </form>
+    </div>
   );
 }
 
